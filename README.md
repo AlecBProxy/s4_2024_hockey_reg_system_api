@@ -166,4 +166,24 @@ SELECT * FROM divisions;
 - `Error: Invalid choice. Try again.` - Enter a valid menu option (0, 1, or 2)
 - Database errors - Check MySQL connection and credentials
 - Team not found errors - Verify team IDs when creating games
+- 
+## CLI Output Configuration
+
+To provide a clean, user-friendly CLI experience, several configuration settings have been applied to reduce verbose output:
+
+### Current Configuration (Clean CLI)
+
+```properties
+spring.jpa.show-sql=false
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+logging.level.org.hibernate.SQL=off
+logging.level.org.hibernate.type.descriptor.sql=off
+```
+
+### Why These Settings Were Applied
+
+- **`spring.jpa.show-sql=false`**: Prevents Hibernate from printing SQL statements to the console, keeping the CLI output clean and focused on user interactions
+- **`spring.autoconfigure.exclude=SecurityAutoConfiguration`**: Disables Spring Security's default configuration, eliminating security-related startup messages and login prompts that aren't needed for this CLI application
+- **`logging.level.org.hibernate.SQL=off`**: Turns off Hibernate SQL logging at the framework level
+- **`logging.level.org.hibernate.type.descriptor.sql=off`**: Disables parameter binding logging, which would otherwise show SQL parameter values
 
